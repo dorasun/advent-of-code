@@ -14,7 +14,7 @@ fs.readFile("input.txt", 'utf8', (err, data) => {
 			console.log(marker);
 			if (marker.length == 14){
 				console.log(index);
-				throw(''); // throw to stop running here
+				process.exit();	// only need the first 14
 			}
 		}
 	});
