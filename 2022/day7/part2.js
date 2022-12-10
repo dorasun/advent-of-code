@@ -10,6 +10,7 @@ class TreeNode {
 }
 
 var score = 0;
+var usedSpace = 0;
 var firstNode = new TreeNode("filesystem");
 var currentNode;
 var parentNode = firstNode;
@@ -52,8 +53,12 @@ fs.readFile("input.txt", 'utf8', (err, data) => {
 		
 	});
 
-	//console.log(allNodes);
-	processTree(firstNode);
+	console.log(allNodes);
+	firstNode.size = firstNode.children[0].size;
+	
+	usedSpace = firstNode.children[0].size;
+	score = firstNode.children[0].size;
+	processTree(firstNode.children[0]);
 	console.log(score);
 })
 
@@ -66,10 +71,14 @@ function addSize(node, nodeSize){
 }
 
 function processTree(tree){
-	//console.log(tree.name);
-	if (tree.size <= 100000){
-		//console.log(tree.size);
-		score += tree.size;
+	// console.log(tree.name + " > " + tree.size);
+	// console.log(tree);
+
+	var unusedSpace = 70000000 - (usedSpace - tree.size);
+	if (unusedSpace >= 30000000){
+		if (tree.size < score){
+			score = tree.size;
+		}
 	}
 
 	tree.children.forEach(processTree);
