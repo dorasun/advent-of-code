@@ -1,4 +1,3 @@
-import numpy as np
 file = open('input.txt', 'r')
 lines = file.readlines()
 
@@ -28,9 +27,8 @@ for line in lines:
 	print(tensValue)
 	print(onesValue)
 
-	calibration = int(tensValue)*10 + int(onesValue)
+	calibration = tensValue + onesValue
 	print(calibration)
-	total += calibration
+	total += int(calibration)
 
 print(total)
-
